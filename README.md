@@ -1,2 +1,6 @@
 # csgo-skins
 TIENDA SKINS DROP GOD CSGO SKINS
+
+DOCUMENTO DONDE ESTA TODAS LAS PRACTICAS EH INTENTOS Y MEJORAS DEL CODIGO DEL SITIO WEB 🥇
+
+ENLACE:  https://docs.google.com/document/d/1rt6YQsnbw-KOun9muWR5dfUrv5yJoW0KlAxcu6_yP98/edit?usp=sharing
