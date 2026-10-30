@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>DROP GO</title>
+
+
+    <style>
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+
+            font-family: Arial, sans-serif;
+            color: goldenrod;
+
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, .55),
+                    rgba(0, 0, 0, .80)
+                ),
+                url("image.jpg");
+
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+        .titulo {
+            text-align: center;
+            padding: 35px 20px 10px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+
+        .titulo h1 {
+            font-size: clamp(42px, 7vw, 65px);
+            margin: 0 0 12px;
+
+
+            font-weight: 900;
+            letter-spacing: 4px;
+
+
+            text-shadow:
+                0 0 10px rgba(218, 165, 32, .7),
+                0 0 25px rgba(218, 165, 32, .3);
+        }
+
+
+        .titulo p {
+            margin: 8px 0;
+
+
+            font-family:
+                Impact,
+                Haettenschweiler,
+                "Arial Narrow Bold",
+                sans-serif;
+
+
+            font-size: clamp(17px, 3vw, 22px);
+            letter-spacing: 1px;
+        }
+
+
+
+
+ 
+
+
+        .login {
+            width: min(360px, calc(100% - 30px));
+
+
+            margin: 45px auto;
+
+
+            padding: 30px 25px;
+
+
+            background: rgba(0, 0, 0, .82);
+
+
+            border: 2px solid goldenrod;
+            border-radius: 15px;
+
+
+            text-align: center;
+
+
+            box-shadow:
+                0 0 25px rgba(218, 165, 32, .25);
+        }
+
+
+        .login h2 {
+            margin: 0 0 20px;
+            font-size: 28px;
+        }
+
+
+        .login input {
+            display: block;
+
+
+            width: 100%;
+
+
+            padding: 12px;
+
+
+            margin: 10px 0;
+
+
+            border-radius: 7px;
+            border: 1px solid goldenrod;
+
+
+            background: #111;
+            color: white;
+
+
+            text-align: center;
+
+
+            outline: none;
+
+
+            font-size: 15px;
+        }
+
+
+        .login input:focus {
+            border-color: white;
+
+
+            box-shadow:
+                0 0 8px rgba(218, 165, 32, .5);
+        }
+
+
+        .login button,
+        .boton-volver button {
+
+
+            padding: 11px 28px;
+
+
+            margin-top: 12px;
+
+
+            background: goldenrod;
+            color: black;
+
+
+            font-weight: bold;
+            font-size: 15px;
+
+
+            border: none;
+            border-radius: 7px;
+
+
+            cursor: pointer;
+
+
+            transition:
+                .2s ease;
+        }
+
+
+        .login button:hover,
+        .boton-volver button:hover {
+
+
+            background: white;
+
+
+            transform: translateY(-2px);
+
+
+            box-shadow:
+                0 5px 15px rgba(255, 255, 255, .15);
+        }
+
+
+        .error {
+
+
+            color: #ff3333;
+
+
+            font-weight: bold;
+
+
+            margin-top: 15px;
+
+
+            display: none;
+        }
+
+
+
+
+
+
+        #skins {
+
+
+            display: none;
+
+
+            width: 100%;
+
+
+            padding:
+                35px
+                clamp(15px, 4vw, 50px)
+                50px;
+
+
+            text-align: center;
+        }
+
+
+        #skins > h2 {
+
+
+            margin-top: 0;
+            margin-bottom: 10px;
+
+
+            font-size: clamp(28px, 5vw, 40px);
+
+
+            text-shadow:
+                0 0 10px rgba(218, 165, 32, .5);
+        }
+
+
+        #skins > p {
+
+
+            max-width: 800px;
+
+
+            margin:
+                0 auto 35px;
+
+
+            font-size: 16px;
+
+
+            line-height: 1.5;
+        }
+
+
+
+
+
+
+
+
+        .skins-lista {
+
+
+            width: 100%;
+            max-width: 1250px;
+
+
+            margin: 0 auto;
+
+
+            display: grid;
+
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(240px, 1fr)
+                );
+
+
+            gap: 25px;
+
+
+            align-items: stretch;
+        }
+
+
+
+
+
+
+
+
+        .skin {
+
+
+            width: 100%;
+            min-width: 0;
+
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(25, 25, 25, .95),
+                    rgba(0, 0, 0, .85)
+                );
+
+
+            border: 2px solid goldenrod;
+
+
+            border-radius: 14px;
+
+
+            padding: 20px;
+
+
+            display: flex;
+            flex-direction: column;
+
+
+            justify-content: space-between;
+
+
+            min-height: 410px;
+
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, .5);
+
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
+        }
+
+
+        .skin:hover {
+
+
+            transform:
+                translateY(-7px);
+
+
+            border-color: #fff;
+
+
+            box-shadow:
+                0 10px 30px rgba(218, 165, 32, .25);
+        }
+
+
+
+
+
+
+        .skin h3 {
+
+
+            margin:
+                0 0 8px;
+
+
+            min-height: 45px;
+
+
+            display: flex;
+
+
+            justify-content: center;
+            align-items: center;
+
+
+            color: goldenrod;
+
+
+            font-size: 19px;
+
+
+            line-height: 1.2;
+        }
+
+
+
+
+
+
+
+
+        .skin p {
+
+
+            margin:
+                0 0 10px;
+
+
+            min-height: 40px;
+
+
+            color: #ddd;
+
+
+            font-size: 14px;
+
+
+            line-height: 1.4;
+        }
+
+
+
+
+
+
+        .imagen-contenedor {
+
+
+            width: 100%;
+
+
+            height: 190px;
+
+
+            margin:
+                12px 0 18px;
+
+
+            display: flex;
+
+
+            align-items: center;
+            justify-content: center;
+
+
+            overflow: hidden;
+        }
+
+
+
+
+
+
+        .product-image {
+
+
+            display: block;
+
+
+            width: 100%;
+            height: 100%;
+
+
+            max-width: 100%;
+            max-height: 100%;
+
+
+            object-fit: contain;
+
+
+            object-position: center;
+
+
+            transition:
+                transform .3s ease;
+        }
+
+
+        .skin:hover .product-image {
+
+
+            transform:
+                scale(1.06);
+        }
+
+
+
+
+
+
+
+
+        .skin a {
+
+
+            display: inline-flex;
+
+
+            align-items: center;
+            justify-content: center;
+
+
+            width: 100%;
+
+
+            padding: 11px 15px;
+
+
+            background: goldenrod;
+
+
+            color: black;
+
+
+            font-weight: bold;
+
+
+            text-decoration: none;
+
+
+            border-radius: 7px;
+
+
+            transition:
+                .2s ease;
+        }
+
+
+        .skin a:hover {
+
+
+            background: white;
+
+
+            transform:
+                translateY(-2px);
+        }
+
+
+
+
+        .boton-volver {
+
+
+            margin-top: 40px;
+            text-align: center;
+        }
+
+
+
+
+
+
+        @media (max-width: 700px) {
+
+
+            .titulo {
+                padding-top: 25px;
+            }
+
+
+            #skins {
+                padding:
+                    25px 15px 40px;
+            }
+
+
+            .skins-lista {
+
+
+                grid-template-columns:
+                    repeat(
+                        auto-fit,
+                        minmax(220px, 1fr)
+                    );
+
+
+                gap: 18px;
+            }
+
+
+            .skin {
+                min-height: 390px;
+            }
+
+
+            .imagen-contenedor {
+                height: 170px;
+            }
+        }
+
+
+
+
+        @media (max-width: 500px) {
+
+
+            .skins-lista {
+                grid-template-columns: 1fr;
+            }
+
+
+            .skin {
+                max-width: 360px;
+                margin: auto;
+            }
+
+
+            .imagen-contenedor {
+                height: 190px;
+            }
+        }
+
+
+    </style>
+</head>
+
+
+
+
+<body>
+
+
+
+
+
+
+
+
+    <div class="titulo">
+
+
+        <h1>DROP GO</h1>
+
+
+        <p>
+            BIENVENIDO A ESTA HERMOSA PÁGINA
+            DONDE TENDRÁS MODS DE SKINS
+            PARA TU JUEGO
+        </p>
+
+
+        <p>
+            ¡DIVIÉRTETE CON NOSOTROS! :D
+        </p>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="login" id="login">
+
+
+        <h2>Iniciar sesión</h2>
+
+
+        <input
+            type="text"
+            id="usuario"
+            placeholder="Usuario"
+            autocomplete="username"
+        >
+
+
+        <input
+            type="password"
+            id="contrasena"
+            placeholder="Contraseña"
+            autocomplete="current-password"
+        >
+
+
+        <button
+            type="button"
+            onclick="iniciarSesion()"
+        >
+            Entrar
+        </button>
+
+
+        <p
+            class="error"
+            id="error"
+        >
+            Usuario o contraseña incorrectos.
+        </p>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div id="skins">
+
+
+        <h2>
+            SKINS DE COUNTER-STRIKE
+        </h2>
+
+
+        <p>
+            Elegí una skin y descargala
+            PARA QUE LA DISFRUTES EN LA HORA
+            DE DAR TIROS A LA CABEZA :D
+        </p>
+
+
+
+
+        <div class="skins-lista">
+
+       
+
+
+
+           
+
+
+            <div class="skin">
+
+
+                <h3>
+                    AWP | Dragon Lore 3
+                </h3>
+
+
+                <p>
+                    Skin legendaria para AWP.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdTRH-t26q4SZlvD7PYTQgXtu5Mx2gv2PrdSijAWwqkVtN272JIGdJw46YVrYqVO3xLy-gJC9u5vByCBh6ygi7WGdwUKTYdRD8A/512fx384f"
+                        alt="AWP Dragon Lore"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                    href="https://drive.google.com/file/d/1KL2PNZOznaU8FDON6Q5J4t73iDg3DtTo/view?usp=drive_link"=dowland " AWP Dragon Lore"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+
+
+           
+            <div class="skin">
+
+
+                <h3>
+                    M4A1-S | Flashback 3
+                </h3>
+
+
+                <p>
+                    Skin para M4A1-S.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://cdn.tradeit.gg/csgo%2FM4A1-S%20-%20Flashback%20(Factory%20New)_240x152.webp"
+                        alt="M4A1-S Flashback"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                     href="https://drive.google.com/file/d/1Aq_XnE0wVYp3LNTFZUg1vQoWTTJ_6nsP/view?usp=drive_link"=dowland " M4A1-S Flashbck"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+
+
+           
+
+
+            <div class="skin">
+
+
+                <h3>
+                    AK-47 | Gold Arabesque
+                </h3>
+
+
+                <p>
+                    Skin dorada para AK-47.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot7HxfDhnwMzJemkV09u5mIS0luX1Mb7Ch35U1810i__Yu4r00Qyw-0tkYjylLIKXeg86M1zX_Qfoxr_u0MfqvsjIy3dguCYksSzD30vg_z3OXoA"
+                        alt="AK-47 Gold Arabesque"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                   href="https://drive.google.com/file/d/1ur2T7pe_G4kKy6XF1qB8rvEDqsmWyx0a/view?usp=drive_link"=dowland " AK-47 Gold Arabesque"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="skin">
+
+
+                <h3>
+                    Desert Eagle | Code Red
+                </h3>
+
+
+                <p>
+                    Skin Code Red para Desert Eagle.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://screenshots.cs.money/csmoney2/1f010acfe40074bd18ebb6ddbe696a51_icon.png"
+                        alt="Desert Eagle Code Red"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                    href="https://drive.google.com/file/d/1bcyAVQzvqX80-OC1DPpCjnAWP0yi-qAS/view?usp=drive_link"=dowland " Desert Eagle Code Red"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="skin">
+
+
+                <h3>
+                    Karambit | Gamma Doppler Emerald
+                </h3>
+
+
+                <p>
+                    Skin Emerald para Karambit.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://cs2.io/assets/images/skins/cs2/skins/karambit-gamma-doppler--6bd8a366ec88.png"
+                        alt="Karambit Gamma Doppler Emerald"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                    href="https://drive.google.com/file/d/13IpOWizPQosyv_MB3VgM7Nv5JcePYBr8/view?usp=drive_link"=Karambit Gamma Doppler Emerald"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+ 
+
+
+            <div class="skin">
+
+
+                <h3>
+                    M9 Bayoneta | Ruby 3
+                </h3>
+
+
+                <p>
+                    Skin para M9 Bayoneta.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_vxjsvhWQiihlxEiuieAnrD1KCzPKhhyX5sjE7MLtRnuxNbjYb-x7gDWiYMTmCms2HlI7H065bsCUPF0-afUkUifZqukeTAH"
+                        alt="M9 Bayoneta Ruby"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                    
+                    href="https://drive.google.com/file/d/13RMb0eX0IULOTy-Pt_qy21IKGRB4Ue1W/view?usp=drive_link"=M9 Bayonet Ruby"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="skin">
+
+
+                <h3>
+                    Guantes Sport | Pandora's 1
+                </h3>
+
+
+                <p>
+                    Skin para guantes.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://assets.skin.land/market_images/16529_b.png"
+                        alt="Guantes Sport Pandora's"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                     href="https://drive.google.com/file/d/1aCKzShF_pw5C4NnQnJDdKs27k4nXbHDI/view?usp=drive_link"=Guantes Sport Pandora´s"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+
+
+           
+            <div class="skin">
+
+
+                <h3>
+                    Guantes Conductor | Snow Leopard
+                </h3>
+
+
+                <p>
+                    Skin de guantes con diseño
+                    de leopardo de las nieves.
+                </p>
+
+
+                <div class="imagen-contenedor">
+
+
+                    <img
+                        src="https://imageproxy.waxpeer.com/insecure/rs:fit:552:385:0/g:nowe/f:webp/plain/https://images.waxpeer.com/i/730-driver-gloves-snow-leopard-battle-scarred.webp"
+                        alt="Guantes Conductor Snow Leopard"
+                        class="product-image"
+                        loading="lazy"
+                    >
+
+
+                </div>
+
+
+                <a
+                      href="https://drive.google.com/file/d/1kUUepk7Di_Bh0n7rtuHU6JqVBV1tzaGb/view?usp=drive_link"=Guantes Conductor  Snow Leopard"
+                    download
+                >
+                    Descargar
+                </a>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+        <div class="boton-volver">
+
+
+            <button
+                type="button"
+                onclick="cerrarSesion()"
+            >
+                Cerrar sesión
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+ 
+
+
+    <script>
+
+
+        const USUARIO_CORRECTO = "BRZ";
+
+
+        const CONTRASENA_CORRECTA = "nehuybrian";
+
+
+
+
+        function iniciarSesion() {
+
+
+            const usuario =
+                document
+                    .getElementById("usuario")
+                    .value
+                    .trim();
+
+
+            const contrasena =
+                document
+                    .getElementById("contrasena")
+                    .value
+                    .trim();
+
+
+            const error =
+                document.getElementById("error");
+
+
+            const login =
+                document.getElementById("login");
+
+
+            const skins =
+                document.getElementById("skins");
+
+
+
+
+            if (
+                usuario === USUARIO_CORRECTO &&
+                contrasena === CONTRASENA_CORRECTA
+            ) {
+
+
+                login.style.display = "none";
+
+
+                skins.style.display = "block";
+
+
+                error.style.display = "none";
+
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+
+            } else {
+
+
+                error.style.display = "block";
+
+
+            }
+
+
+        }
+
+
+
+
+        function cerrarSesion() {
+
+
+            const login =
+                document.getElementById("login");
+
+
+            const skins =
+                document.getElementById("skins");
+
+
+            const usuario =
+                document.getElementById("usuario");
+
+
+            const contrasena =
+                document.getElementById("contrasena");
+
+
+
+
+            skins.style.display = "none";
+
+
+            login.style.display = "block";
+
+
+            usuario.value = "";
+
+
+            contrasena.value = "";
+
+
+            usuario.focus();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+
+        }
+
+
+
+
+        document
+            .getElementById("contrasena")
+            .addEventListener(
+                "keydown",
+                function(event) {
+
+
+                    if (event.key === "Enter") {
+
+
+                        iniciarSesion();
+
+
+                    }
+
+
+                }
+            );
+
+
+    </script>
+
+<footer class="footer">
+    <div class="seccionFundadores">
+        <p>Fundadores: Nehuen Quintanilla alias neguka23,
+             Brian Matias Cruz Melgarejo alias BRZ
+            </p>
+    </div>
+</footer>
+<style>
+    .footer{
+        height: 200px;
+        width: 100%;
+            background: rgba(0, 0, 0, .82);
+        margin-top: 230px;
+            border: 2px solid goldenrod;
+                box-shadow: 0 0 25px rgba(218, 165, 32, .25);
+                border-left: none;
+                border-right: none;
+                border-bottom: none;
+    }
+    .seccionFundadores{
+        display: flex;
+        color:goldenrod ;
+        align-items:flex-end;
+        justify-content: center;
+        height: 200px;
+        width: 100%;
+
+        
+    }
+
+    
+</style>
+</body>
+</html>
